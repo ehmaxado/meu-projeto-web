@@ -51,7 +51,7 @@
                     <input class="form-check-input item-produto" type="checkbox" value="50.00" id="produtoAlpha">
                     <label class="form-check-label" for="produtoAlpha">Selecionar</label>
                 </div>
-                <h5 class="card-title">Produto Alpha</h5>
+                <h5 class="card-title">Produto aleatório 1</h5>
                 <p class="card-text">R$ 50,00</p>
                 <div class="mb-2">
                     <label for="qtdAlpha" class="form-label">Quantidade:</label>
@@ -70,7 +70,7 @@
                     <input class="form-check-input item-produto" type="checkbox" value="75.00" id="produtoBeta">
                     <label class="form-check-label" for="produtoBeta">Selecionar</label>
                 </div>
-                <h5 class="card-title">Produto Beta</h5>
+                <h5 class="card-title">Produto aleatório 2</h5>
                 <p class="card-text">R$ 75,00</p>
                 <div class="mb-2">
                     <label for="qtdBeta" class="form-label">Quantidade:</label>
@@ -89,7 +89,7 @@
                     <input class="form-check-input item-produto" type="checkbox" value="100.00" id="produtoGamma">
                     <label class="form-check-label" for="produtoGamma">Selecionar</label>
                 </div>
-                <h5 class="card-title">Produto Gamma</h5>
+                <h5 class="card-title">Produto produto aleatório 3</h5>
                 <p class="card-text">R$ 100,00</p>
                 <div class="mb-2">
                     <label for="qtdGamma" class="form-label">Quantidade:</label>
@@ -109,34 +109,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script>
-        
-        function atualizarTotal() {
-            const itens = document.querySelectorAll('.item-produto');
-            let total = 0;
-            itens.forEach((checkbox) => {
-                if (checkbox.checked) {
-                    const valor = parseFloat(checkbox.value) || 0;
-                    
-                    const qtdId = 'qtd' + checkbox.id.replace('produto', '');
-                    const qtdInput = document.getElementById(qtdId);
-                    const quantidade = qtdInput ? parseInt(qtdInput.value, 10) : 1;
-                    total += valor * quantidade;
-                }
-            });
-            
-            const valorSpan = document.getElementById('valor-total');
-            if (valorSpan) {
-                valorSpan.textContent = total.toFixed(2).replace('.', ',');
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkboxes = document.querySelectorAll('.item-produto');
-            const quantidades = document.querySelectorAll('.qtd-produto');
-            checkboxes.forEach(cb => cb.addEventListener('change', atualizarTotal));
-            quantidades.forEach(q => q.addEventListener('input', atualizarTotal));
-        });
-    </script>
+    
+    <script src="script.js"></script>
+
 </body>
 </html>
