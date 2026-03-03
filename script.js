@@ -4,16 +4,16 @@ function atualizarTotal() {
             itens.forEach((checkbox) => {
                 if (checkbox.checked) {
                     const valor = parseFloat(checkbox.value) || 0;
-                  
                     const qtdInput = checkbox.closest('.card-body').querySelector('.qtd-produto');
                     const quantidade = qtdInput ? parseInt(qtdInput.value, 10) : 1;
                     total += valor * quantidade;
                 }
             });
-            
+            // formato BRL com Intl
+            const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
             const valorSpan = document.getElementById('valor-total');
             if (valorSpan) {
-                valorSpan.textContent = total.toFixed(2).replace('.', ',');
+                valorSpan.textContent = fmt.format(total);
             }
         }
         
@@ -57,7 +57,8 @@ function gerarNomeValorRandomico() {
 
 function popularProdutos() {
     const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
+        const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+        cards.forEach(card => {
         const prod = gerarNomeValorRandomico();
         //const img = card.querySelector('img');
         const titulo = card.querySelector('.card-title');
@@ -65,7 +66,8 @@ function popularProdutos() {
         const checkbox = card.querySelector('.item-produto');
         //if (img) img.src = prod.imagem;
         if (titulo) titulo.textContent = prod.nome;
-        if (text) text.textContent = 'R$ ' + prod.valor.toFixed(2).replace('.', ',');
+        if (text) text.textContent = fmt.format(prod.valor);
         if (checkbox) checkbox.value = prod.valor.toFixed(2);
     });
 }
+
