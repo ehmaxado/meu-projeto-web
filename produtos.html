@@ -1,119 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    <title>Produtos</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand text-dark fw-normal" href="#">Navbar</a>
-        
-        <button class="navbar-toggler border-dark" type="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#navbarNav" 
-                aria-controls="navbarNav" 
-                aria-expanded="false" 
-                aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="container-fluid">
+            <a class="navbar-brand text-dark fw-normal" href="#">MeuProjeto</a>
+            
+            <button class="navbar-toggler border-dark" type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-            <a class="nav-link text-dark fw-normal hover-fw-bold active" aria-current="page" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link text-dark fw-normal hover-fw-bold" href="produtos.html">Produtos</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link text-dark fw-normal hover-fw-bold" href="contatos.html">Contatos</a>
-            </li>
-        </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-normal" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-normal active" href="produtos.html">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-normal" href="contatos.html">Contatos</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <button id="botao-carrinho" class="btn btn-outline-dark position-relative" onclick="toggleCarrinho()" style="font-size: 1.5rem;">🛒</button>
         </div>
-    </div>
     </nav>
 
-    <div class="container">
-        <h1>Página de produtos</h1>
-        <div class="container my-5">
-        <div class="row">
-
-            <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="https://picsum.photos/400/300?random=1" class="card-img-top" alt="Produto 1">
-                <div class="card-body d-flex flex-column">
-                
-                <div class="form-check mb-2">
-                    <label class="form-check-label">
-                        <input class="form-check-input item-produto" type="checkbox" value="50.00">
-                        Selecionar
-                    </label>
-                </div>
-                <h5 class="card-title">Produto aleatório 1</h5>
-                <p class="card-text">R$ 50,00</p>
-                <div class="mb-2">
-                    <label class="form-label">Quantidade:</label>
-                    <input type="number" class="form-control qtd-produto" value="1" min="1">
-                </div>
-                </div>
+    <div id="popup-carrinho" class="popup-carrinho">
+        <div class="popup-carrinho-conteudo">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0">Carrinho de Compras</h4>
+                <button class="btn btn-close" onclick="toggleCarrinho()" aria-label="Fechar"></button>
             </div>
+            <div id="lista-carrinho" class="lista-carrinho">
+                <p class="text-center text-muted">Carrinho vazio</p>
             </div>
-
-            <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="https://picsum.photos/400/300?random=2" class="card-img-top" alt="Produto 2">
-                <div class="card-body d-flex flex-column">
-                <div class="form-check mb-2">
-                    <label class="form-check-label">
-                        <input class="form-check-input item-produto" type="checkbox" value="75.00">
-                        Selecionar
-                    </label>
-                </div>
-                <h5 class="card-title">Produto aleatório 2</h5>
-                <p class="card-text">R$ 75,00</p>
-                <div class="mb-2">
-                    <label class="form-label">Quantidade:</label>
-                    <input type="number" class="form-control qtd-produto" value="1" min="1">
-                </div>
-                </div>
+            <div class="carrinho-total">
+                <h5>Total: <span id="total-carrinho">R$ 0,00</span></h5>
             </div>
+            <div class="carrinho-botoes">
+                <button class="btn btn-success" onclick="finalizarCompra()">Comprar</button>
+                <button class="btn btn-danger" onclick="limparCarrinho()">Limpar Carrinho</button>
             </div>
-
-            <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="https://picsum.photos/400/300?random=3" class="card-img-top" alt="Produto 3">
-                <div class="card-body d-flex flex-column">
-                <div class="form-check mb-2">
-                    <label class="form-check-label">
-                        <input class="form-check-input item-produto" type="checkbox" value="100.00">
-                        Selecionar
-                    </label>
-                </div>
-                <h5 class="card-title">Produto produto aleatório 3</h5>
-                <p class="card-text">R$ 100,00</p>
-                <div class="mb-2">
-                    <label class="form-label">Quantidade:</label>
-                    <input type="number" class="form-control qtd-produto" value="1" min="1">
-                </div>
-                </div>
-            </div>
-            </div>
-
-
+        </div>
     </div>
 
-    
-    <div class="alert alert-info text-center my-4">
-        <h4>Valor Total: R$ <span id="valor-total">0,00</span></h4>
+    <div class="container mt-5">
+        <h1 class="mb-4">Produtos</h1>
+        <div class="mb-4">
+            <label for="num-produtos" class="form-label fw-bold">Número de produtos a exibir:</label>
+            <select id="num-produtos" class="form-select w-auto">
+                <option value="3" selected>3</option>
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="all">Todos</option>
+            </select>
+        </div>
+        <div class="row" id="produtos-container"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    
     <script src="script.js"></script>
-
 </body>
 </html>
