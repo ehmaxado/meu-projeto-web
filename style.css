@@ -20,6 +20,22 @@ body {
     margin-top: 20px;
 }
 
+/* cards de produtos menores */
+#produtos-container .card {
+    /* limitar largura para melhor proporção em colunas */
+    max-width: 18rem;
+    margin: 0 auto;
+}
+
+#produtos-container .card img {
+    max-height: 150px;
+    object-fit: contain;
+}
+
+#produtos-container .card-body {
+    padding: 1rem;
+}
+
 .popup-carrinho {
     position: fixed;
     top: 60px;
