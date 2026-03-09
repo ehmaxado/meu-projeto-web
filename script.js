@@ -190,6 +190,43 @@ function toggleCarrinho() {
 }
 
 // =====================================
+// DEPOIMENTOS
+// =====================================
+
+async function carregarDepoimentos() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/comments?_limit=3');
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar depoimentos: ${response.status}`);
+        }
+        const dados = await response.json();
+        const container = document.getElementById('lista-depoimentos');
+        if (!container) return;
+        container.innerHTML = '';
+        dados.forEach(item => {
+            const card = `
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.name}</h5>
+                            <p class="card-text">${item.body}</p>
+                            <br>
+                            <p class="card-subtitle text-muted">&nbsp;– ${item.email}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    } catch (err) {
+        console.error('Não foi possível carregar depoimentos', err);
+    }
+}
+
+// chama a função quando o script for carregado
+carregarDepoimentos();
+
+// =====================================
 // PRODUTOS E CARDS
 // =====================================
 function atualizarTotalCard(inputElement) {
