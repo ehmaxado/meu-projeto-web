@@ -224,7 +224,7 @@ function gerarCardHTML(produto) {
                     <p class="card-text">${fmt.format(produto.valor)}</p>
                     <div class="mb-2">
                         <label class="form-label">Quantidade:</label>
-                        <input type="number" class="form-control qtd-produto" value="0" min="0">
+                        <input type="number" class="form-control qtd-produto" value="1" min="0">
                     </div>
                     <p>Total: <span class="total-produto">R$ 0,00</span></p>
                     <button class="btn btn-primary adicionar-carrinho">Adicionar ao Carrinho</button>
