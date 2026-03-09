@@ -1,3 +1,20 @@
+/* Navbar fixa no topo e espaçamento do corpo */
+nav.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+body {
+    padding-top: 70px; /* altura aproximada do navbar */
+}
+
+/* Ajuste de distância dos cards de depoimentos */
+#lista-depoimentos {
+    margin-top: 20px;
+}
+
 .popup-carrinho {
     position: fixed;
     top: 60px;
