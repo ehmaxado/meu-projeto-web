@@ -24,10 +24,14 @@ export function mostrarNotificacao(mensagem, tipo = 'success') {
 
 export function gerarCardHTML(produto) {
     const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+    const imagemRandom = `https://picsum.photos/300/250?random=${Math.floor(Math.random() * 1000)}`;
+    const descricao = produto.descricao || `Descrição detalhada do produto ${produto.nome}. Produto de alta qualidade com excelente custo-benefício.`;
+    const totalInicial = fmt.format(produto.valor * 1); // Calcula total inicial com quantidade 1
+    
     return `
         <div class="col-md-4 mb-4">
             <div class="card h-100">
-                <img src="https://picsum.photos/300/250?random=${Math.floor(Math.random() * 1000)}" class="card-img-top" alt="${produto.nome}">
+                <img src="${imagemRandom}" class="card-img-top" alt="${produto.nome}">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${produto.nome}</h5>
                     <p class="card-text">${fmt.format(produto.valor)}</p>
@@ -35,8 +39,19 @@ export function gerarCardHTML(produto) {
                         <label class="form-label">Quantidade:</label>
                         <input type="number" class="form-control qtd-produto" value="1" min="0">
                     </div>
-                    <p>Total: <span class="total-produto">R$ 0,00</span></p>
-                    <button class="btn btn-primary adicionar-carrinho">Adicionar ao Carrinho</button>
+                    <p>Total: <span class="total-produto">${totalInicial}</span></p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-info btn-ver-detalhes" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modalDetalhesProduto"
+                                data-nome="${produto.nome}"
+                                data-preco="${produto.valor}"
+                                data-descricao="${descricao}"
+                                data-imagem="${imagemRandom}">
+                            Ver Detalhes
+                        </button>
+                        <button class="btn btn-primary adicionar-carrinho">Adicionar ao Carrinho</button>
+                    </div>
                 </div>
             </div>
         </div>

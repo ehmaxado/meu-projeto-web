@@ -74,8 +74,11 @@ function alterarQuantidade(index, valor) {
 }
 
 function removerDoCarrinho(index) {
-    carrinho.splice(index, 1);
-    salvarCarrinho();
+    const item = carrinho[index];
+    if (confirm(`Deseja remover "${item.nome}" do carrinho?`)) {
+        carrinho.splice(index, 1);
+        salvarCarrinho();
+    }
 }
 
 function limparCarrinho() {
@@ -255,6 +258,64 @@ document.addEventListener('DOMContentLoaded', () => {
             popup.classList.remove('ativo');
         }
     });
+    
+    // Configurar modal de detalhes do produto
+    const modalDetalhes = document.getElementById('modalDetalhesProduto');
+    if (modalDetalhes) {
+        modalDetalhes.addEventListener('show.bs.modal', function (event) {
+            // Botão que acionou o modal
+            const botao = event.relatedTarget;
+            
+            // Extrair dados dos atributos data-*
+            const nome = botao.getAttribute('data-nome');
+            const preco = parseFloat(botao.getAttribute('data-preco'));
+            const descricao = botao.getAttribute('data-descricao');
+            const imagem = botao.getAttribute('data-imagem');
+            
+            // Elementos do modal
+            const modalTitulo = modalDetalhes.querySelector('#modalDetalhesProdutoLabel');
+            const modalDescricao = modalDetalhes.querySelector('#modal-produto-descricao');
+            const modalPreco = modalDetalhes.querySelector('#modal-produto-preco');
+            const modalImagem = modalDetalhes.querySelector('#modal-produto-imagem');
+            const modalQuantidade = modalDetalhes.querySelector('#modal-produto-quantidade');
+            const btnAdicionar = modalDetalhes.querySelector('#modal-adicionar-carrinho');
+            
+            // Formatar preço
+            const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            // Injetar conteúdo no modal
+            modalTitulo.textContent = nome;
+            modalDescricao.textContent = descricao;
+            modalPreco.textContent = fmt.format(preco);
+            modalImagem.src = imagem;
+            modalImagem.alt = nome;
+            modalQuantidade.value = 1;
+            
+            // Configurar botão de adicionar ao carrinho no modal
+            btnAdicionar.onclick = function() {
+                const quantidade = parseInt(modalQuantidade.value, 10);
+                
+                if (quantidade <= 0) {
+                    mostrarNotificacao('Selecione uma quantidade maior que 0.');
+                    return;
+                }
+                
+                const itemExistente = carrinho.find(item => item.nome === nome);
+                if (itemExistente) {
+                    itemExistente.quantidade += quantidade;
+                } else {
+                    carrinho.push({ nome, preco, quantidade });
+                }
+                
+                salvarCarrinho();
+                mostrarNotificacao(`✓ Adicionado ao carrinho: ${quantidade}x ${nome}`);
+                
+                // Fechar o modal
+                const modal = bootstrap.Modal.getInstance(modalDetalhes);
+                modal.hide();
+            };
+        });
+    }
     const select = document.getElementById('num-produtos');
     if (select) {
         popularProdutos(3);
