@@ -1,3 +1,6 @@
+import { getDepoimentos, postContato } from './api.js';
+import { mostrarNotificacao, gerarCardHTML, atualizarTotalCard } from './ui.js';
+
 // dados de produtos
 const produtos = [
     { nome: 'Apple iPhone 15 (128GB)', valor: 4999.00, imagem: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-hero-select-202309?wid=470&hei=556&fmt=png-alpha' },
@@ -25,29 +28,6 @@ const produtos = [
 // estado do carrinho
 let carrinho = [];
 
-// notificações (toasts)
-function mostrarNotificacao(mensagem, tipo = 'success') {
-    const container = document.getElementById('toast-container') || criarContainerToast();
-    const toast = document.createElement('div');
-    toast.className = `toast-notificacao ${tipo}`;
-    toast.textContent = mensagem;
-    
-    container.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.classList.add('sair');
-        setTimeout(() => toast.remove(), 300);
-    }, 2000);
-}
-
-function criarContainerToast() {
-    const container = document.createElement('div');
-    container.id = 'toast-container';
-    container.className = 'toast-container';
-    document.body.appendChild(container);
-    return container;
-}
-
 // gerenciamento do carrinho
 function carregarCarrinho() {
     const carrinhoSalvo = localStorage.getItem('carrinho');
@@ -66,19 +46,19 @@ function adicionarAoCarrinho(card) {
     let preco = precoText.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
     preco = parseFloat(preco);
     const quantidade = parseInt(card.querySelector('.qtd-produto').value, 10);
-    
+
     if (quantidade <= 0) {
         mostrarNotificacao('Selecione uma quantidade maior que 0.');
         return;
     }
-    
+
     const itemExistente = carrinho.find(item => item.nome === nome);
     if (itemExistente) {
         itemExistente.quantidade += quantidade;
     } else {
         carrinho.push({ nome, preco, quantidade });
     }
-    
+
     salvarCarrinho();
     mostrarNotificacao(`✓ Adicionado ao carrinho: ${quantidade}x ${nome}`);
     card.querySelector('.qtd-produto').value = '0';
@@ -179,16 +159,19 @@ function toggleCarrinho() {
     popup.classList.toggle('ativo');
 }
 
+// Expose functions used by inline onclick handlers in HTML.
+window.toggleCarrinho = toggleCarrinho;
+window.limparCarrinho = limparCarrinho;
+window.finalizarCompra = finalizarCompra;
+window.removerDoCarrinho = removerDoCarrinho;
+window.alterarQuantidade = alterarQuantidade;
+
 // depoimentos
 
 async function carregarDepoimentos() {
     try {
         const numero = Math.floor(Math.random() * 20) + 1;
-        const response = await fetch(`https://jsonplaceholder.typicode.com/comments?_limit=${numero}`);
-        if (!response.ok) {
-            throw new Error(`Erro ao buscar depoimentos: ${response.status}`);
-        }
-        const dados = await response.json();
+        const dados = await getDepoimentos(numero);
         const container = document.getElementById('lista-depoimentos');
         if (!container) return;
         container.innerHTML = '';
@@ -213,53 +196,6 @@ async function carregarDepoimentos() {
 }
 
 // produtos e cards
-function atualizarTotalCard(inputElement) {
-    const card = inputElement.closest('.card');
-    if (!card) return;
-    
-    const precoElement = card.querySelector('.card-text');
-    if (!precoElement) return;
-    
-    const precoText = precoElement.textContent.trim();
-    let preco = precoText.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
-    preco = parseFloat(preco);
-    
-    const quantidade = parseInt(inputElement.value, 10) || 0;
-    const total = preco * quantidade;
-    
-    const totalSpan = card.querySelector('.total-produto');
-    if (totalSpan) {
-        const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-        totalSpan.textContent = fmt.format(total);
-    }
-}
-
-function gerarCardHTML(produto) {
-    const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-    return `
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="https://picsum.photos/300/250?random=${Math.floor(Math.random() * 1000)}" class="card-img-top" alt="${produto.nome}">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${produto.nome}</h5>
-                    <p class="card-text">${fmt.format(produto.valor)}</p>
-                    <div class="mb-2">
-                        <label class="form-label">Quantidade:</label>
-                        <input type="number" class="form-control qtd-produto" value="1" min="0">
-                    </div>
-                    <p>Total: <span class="total-produto">R$ 0,00</span></p>
-                    <button class="btn btn-primary adicionar-carrinho">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-function gerarNomeValorRandomico() {
-    const indice = Math.floor(Math.random() * produtos.length);
-    return produtos[indice];
-}
-
 function popularProdutos(num) {
     const container = document.getElementById('produtos-container');
     container.innerHTML = '';
@@ -297,17 +233,21 @@ function popularProdutos(num) {
     }));
 }
 
+function gerarNomeValorRandomico() {
+    const indice = Math.floor(Math.random() * produtos.length);
+    return produtos[indice];
+}
+
 // inicialização
+
 document.addEventListener('DOMContentLoaded', () => {
     carregarCarrinho();
-    
     const popup = document.getElementById('popup-carrinho');
     if (popup) {
         popup.addEventListener('click', (e) => {
             e.stopPropagation();
         });
     }
-    
     document.addEventListener('click', (e) => {
         const popup = document.getElementById('popup-carrinho');
         const botao = document.getElementById('botao-carrinho');
@@ -315,7 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
             popup.classList.remove('ativo');
         }
     });
-    
     const select = document.getElementById('num-produtos');
     if (select) {
         popularProdutos(3);
@@ -329,9 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     configurarFormularioContato();
 });
 
-// -------------------------------------
 // CONTATO
-// -------------------------------------
 
 function configurarFormularioContato() {
     const formContato = document.querySelector('form');
@@ -348,23 +285,18 @@ function configurarFormularioContato() {
         console.log('Dados enviados:', dados);
 
         try {
-            const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dados)
-            });
-
+            const res = await postContato(dados);
             const retorno = await res.json();
             console.log('Retorno da API:', retorno);
 
             if (res.ok && res.status === 201) {
-                inserirAlerta('success', 'Mensagem enviada com sucesso!');
+                mostrarNotificacao('Mensagem enviada com sucesso!', 'success');
             } else {
-                inserirAlerta('danger', 'Erro ao enviar a mensagem.');
+                mostrarNotificacao('Erro ao enviar a mensagem.', 'danger');
             }
         } catch (err) {
             console.error('Falha no envio do contato', err);
-            inserirAlerta('danger', 'Erro ao enviar a mensagem.');
+            mostrarNotificacao('Erro ao enviar a mensagem.', 'danger');
         }
     });
 }
@@ -379,18 +311,13 @@ function coletarDadosContato() {
 
 function validarDadosContato({ nome, email, mensagem }) {
     if (!nome || !email || !mensagem) {
-        inserirAlerta('danger', 'Preencha todos os campos.');
+        mostrarNotificacao('Preencha todos os campos.', 'danger');
         return false;
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        inserirAlerta('danger', 'Informe um e-mail válido.');
+        mostrarNotificacao('Informe um e-mail válido.', 'danger');
         return false;
     }
     return true;
 }
-
-function inserirAlerta(tipo, texto) {
-    mostrarNotificacao(texto, tipo);
-}
-
