@@ -300,6 +300,8 @@ function configurarFormularioContato() {
     const formContato = document.querySelector('form');
     if (!formContato || !document.getElementById('nome')) return;
 
+    configurarBuscaCep();
+
     formContato.addEventListener('submit', async (e) => {
         e.preventDefault();
         const dados = coletarDadosContato();
@@ -327,10 +329,78 @@ function configurarFormularioContato() {
     });
 }
 
+function configurarBuscaCep() {
+    const cepInput = document.getElementById('cep');
+    if (!cepInput) return;
+
+    cepInput.addEventListener('blur', async () => {
+        const cep = cepInput.value.replace(/\D/g, '');
+
+        if (cep.length === 0) {
+            limparCamposEndereco();
+            return;
+        }
+
+        if (cep.length !== 8) {
+            mostrarNotificacao('CEP inválido. Informe 8 números.', 'danger');
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            if (!response.ok) {
+                throw new Error(`Erro na consulta do CEP: ${response.status}`);
+            }
+
+            const endereco = await response.json();
+
+            if (endereco.erro) {
+                limparCamposEndereco();
+                mostrarNotificacao('CEP não encontrado.', 'danger');
+                return;
+            }
+
+            preencherCamposEndereco(endereco);
+        } catch (error) {
+            console.error('Erro ao buscar CEP no ViaCEP:', error);
+            mostrarNotificacao('Não foi possível buscar o CEP.', 'danger');
+        }
+    });
+}
+
+function preencherCamposEndereco(endereco) {
+    const ruaInput = document.getElementById('rua');
+    const bairroInput = document.getElementById('bairro');
+    const cidadeInput = document.getElementById('cidade');
+    const estadoInput = document.getElementById('estado');
+
+    if (ruaInput) ruaInput.value = endereco.logradouro || '';
+    if (bairroInput) bairroInput.value = endereco.bairro || '';
+    if (cidadeInput) cidadeInput.value = endereco.localidade || '';
+    if (estadoInput) estadoInput.value = endereco.uf || '';
+}
+
+function limparCamposEndereco() {
+    const ruaInput = document.getElementById('rua');
+    const bairroInput = document.getElementById('bairro');
+    const cidadeInput = document.getElementById('cidade');
+    const estadoInput = document.getElementById('estado');
+
+    if (ruaInput) ruaInput.value = '';
+    if (bairroInput) bairroInput.value = '';
+    if (cidadeInput) cidadeInput.value = '';
+    if (estadoInput) estadoInput.value = '';
+}
+
 function coletarDadosContato() {
     return {
         nome: document.getElementById('nome').value.trim(),
         email: document.getElementById('email').value.trim(),
+        cep: (document.getElementById('cep')?.value || '').trim(),
+        rua: (document.getElementById('rua')?.value || '').trim(),
+        bairro: (document.getElementById('bairro')?.value || '').trim(),
+        cidade: (document.getElementById('cidade')?.value || '').trim(),
+        estado: (document.getElementById('estado')?.value || '').trim(),
         mensagem: document.getElementById('mensagem').value.trim()
     };
 }
