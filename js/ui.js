@@ -78,3 +78,30 @@ export function atualizarTotalCard(inputElement) {
         totalSpan.textContent = fmt.format(total);
     }
 }
+
+const CHAVE_TEMA = 'tema';
+
+function aplicarTema(tema) {
+    document.documentElement.setAttribute('data-bs-theme', tema);
+}
+
+function obterTemaSalvo() {
+    const temaSalvo = localStorage.getItem(CHAVE_TEMA);
+    return temaSalvo === 'dark' ? 'dark' : 'light';
+}
+
+function alternarTema() {
+    const temaAtual = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'dark' : 'light';
+    const novoTema = temaAtual === 'dark' ? 'light' : 'dark';
+    aplicarTema(novoTema);
+    localStorage.setItem(CHAVE_TEMA, novoTema);
+}
+
+export function inicializarAlternanciaTema() {
+    aplicarTema(obterTemaSalvo());
+
+    const botaoAlternarTema = document.getElementById('alternar-tema');
+    if (!botaoAlternarTema) return;
+
+    botaoAlternarTema.addEventListener('click', alternarTema);
+}

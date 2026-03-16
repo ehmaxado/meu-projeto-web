@@ -1,5 +1,5 @@
 import { getDepoimentos, postContato } from './api.js';
-import { mostrarNotificacao, gerarCardHTML, atualizarTotalCard } from './ui.js';
+import { mostrarNotificacao, gerarCardHTML, atualizarTotalCard, inicializarAlternanciaTema } from './ui.js';
 
 // dados de produtos
 const produtos = [
@@ -244,6 +244,7 @@ function gerarNomeValorRandomico() {
 // inicialização
 
 document.addEventListener('DOMContentLoaded', () => {
+    inicializarAlternanciaTema();
     carregarCarrinho();
     const popup = document.getElementById('popup-carrinho');
     if (popup) {
