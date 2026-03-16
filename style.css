@@ -42,7 +42,7 @@ body { padding-top: 70px; }
     color: #fff; border-radius: 50%; width: 20px; height: 20px; display: flex;
     align-items: center; justify-content: center; font-size: .7rem;
     font-weight: bold; }
-#botao-carrinho { position: relative; padding: .5rem .75rem; }
+#botao-carrinho { position: relative; padding: .5rem .75rem; font-size: 1.5rem; }
 
 /* notificações tipo toast (carrinho e formulários) */
 .toast-container { position: fixed; top: 80px; right: 20px; z-index: 1100; }
