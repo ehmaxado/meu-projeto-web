@@ -1,6 +1,20 @@
 /* navbar */
 nav.navbar { position: fixed; top: 0; width: 100%; z-index: 1000; }
-body { padding-top: 70px; }
+nav.navbar { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, 0.12); }
+body {
+    padding-top: 78px;
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+.container h1,
+.container h2 {
+    letter-spacing: .01em;
+}
+
+.navbar .navbar-brand {
+    font-weight: 600 !important;
+}
 
 /* depoimentos */
 #lista-depoimentos { margin-top: 20px; }
@@ -10,30 +24,35 @@ body { padding-top: 70px; }
 #produtos-container .card { max-width: 25rem; margin: 0 auto; }
 #produtos-container .card img { max-height: 200px; object-fit: contain; }
 #produtos-container .card-body { padding: 1rem; }
+#produtos-container .card {
+    border-radius: .9rem;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 .35rem .9rem rgba(0, 0, 0, 0.08);
+}
 
 /* carrinho */
 .popup-carrinho { position: fixed; top: 60px; right: -400px; width: 400px;
-    max-height: 80vh; background: #fff; border: 1px solid #ddd;
-    border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-height: 80vh; background: var(--bs-body-bg); border: 1px solid var(--bs-border-color);
+    border-radius: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.18);
     transition: right .3s; z-index: 1050; overflow-y: auto; }
 .popup-carrinho.ativo { right: 10px; }
 .popup-carrinho-conteudo { padding: 20px; }
 .popup-carrinho h4 { margin-bottom: 0; border-bottom: none;
     padding-bottom: 0; font-size: 1.1rem; }
 
-.cart-item-subtotal { font-weight: bold; color: #007bff; font-size: 1rem; }
+.cart-item-subtotal { font-weight: bold; color: var(--bs-primary); font-size: 1rem; }
 .lista-carrinho { margin-bottom: 15px; max-height: 400px; overflow-y: auto; }
 .cart-item { display: flex; justify-content: space-between; align-items: flex-start;
-    padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px; }
+    padding: 10px; border-bottom: 1px solid var(--bs-border-color); margin-bottom: 10px; }
 .cart-item-info { flex: 1; }
 .cart-item-info h6 { margin: 0 0 5px; font-weight: bold; }
 .cart-item-info p { margin: 3px 0; font-size: .9rem; }
-.cart-item-total { font-weight: bold; color: #007bff; }
+.cart-item-total { font-weight: bold; color: var(--bs-primary); }
 .cart-item-controls { display: flex; align-items: center; gap: 5px;
     margin-top: 10px; }
 .cart-item-controls button { padding: 2px 8px; font-size: .8rem; }
 .cart-item-controls input { width: 50px; padding: 4px; font-size: .9rem; }
-.carrinho-total { padding: 10px; background: #f8f9fa; border-radius: 5px;
+.carrinho-total { padding: 10px; background: var(--bs-tertiary-bg); border: 1px solid var(--bs-border-color); border-radius: 5px;
     margin-bottom: 15px; }
 .carrinho-total h5 { margin: 0; }
 .carrinho-botoes { display: flex; gap: 10px; }
@@ -56,3 +75,65 @@ body { padding-top: 70px; }
 @keyframes slideOut { from { transform: translateX(0); opacity: 1; }
     to { transform: translateX(400px); opacity: 0; } }
 .toast-notificacao.sair { animation: slideOut .3s; }
+
+/* contatos */
+.container form {
+    background: var(--bs-tertiary-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: .9rem;
+    padding: 1.25rem;
+    box-shadow: 0 .35rem .9rem rgba(0, 0, 0, 0.06);
+}
+
+/* responsividade */
+@media (max-width: 991.98px) {
+    body { padding-top: 74px; }
+
+    .navbar .container-fluid {
+        row-gap: .5rem;
+    }
+
+    #botao-carrinho {
+        font-size: 1.25rem;
+        padding: .4rem .65rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .container h1 {
+        font-size: 1.75rem;
+    }
+
+    .container h2 {
+        font-size: 1.35rem;
+    }
+
+    .popup-carrinho {
+        width: calc(100vw - 1rem);
+        right: calc(-100vw - 1rem);
+        top: 68px;
+        max-height: calc(100vh - 84px);
+    }
+
+    .popup-carrinho.ativo {
+        right: .5rem;
+    }
+
+    .carrinho-botoes {
+        flex-direction: column;
+    }
+
+    .toast-container {
+        right: .5rem;
+        left: .5rem;
+    }
+
+    .toast-notificacao {
+        width: 100%;
+    }
+}

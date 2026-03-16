@@ -302,6 +302,7 @@ function configurarFormularioContato() {
     if (!formContato || !document.getElementById('nome')) return;
 
     configurarBuscaCep();
+    configurarNavegacaoCamposContato(formContato);
 
     formContato.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -327,6 +328,25 @@ function configurarFormularioContato() {
             console.error('Falha no envio do contato', err);
             mostrarNotificacao('Erro ao enviar a mensagem.', 'danger');
         }
+    });
+}
+
+function configurarNavegacaoCamposContato(formContato) {
+    const camposNavegaveis = Array.from(formContato.querySelectorAll('input, select, textarea'))
+        .filter((campo) => !campo.disabled && campo.type !== 'hidden');
+
+    camposNavegaveis.forEach((campo, indice) => {
+        if (campo.tagName.toLowerCase() === 'textarea') return;
+
+        campo.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter') return;
+
+            event.preventDefault();
+            const proximoCampo = camposNavegaveis[indice + 1];
+            if (proximoCampo) {
+                proximoCampo.focus();
+            }
+        });
     });
 }
 
