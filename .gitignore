@@ -1,0 +1,17 @@
+# .gitignore para projetos front-end
+# Dependências (geradas pelo npm install)
+node_modules/
+# Arquivos de build
+dist/
+build/
+.next/
+# Variáveis de ambiente (senhas, chaves de API)
+.env
+.env.local
+.env.production
+# Arquivos de sistema
+.DS_Store # macOS
+Thumbs.db # Windows
+# Logs
+*.log
+npm-debug.log*

@@ -1,34 +1,40 @@
 // funções de manipulação do DOM e exibição
 
 export function criarContainerToast() {
-    const container = document.createElement('div');
-    container.id = 'toast-container';
-    container.className = 'toast-container';
-    document.body.appendChild(container);
-    return container;
+  const container = document.createElement('div');
+  container.id = 'toast-container';
+  container.className = 'toast-container';
+  document.body.appendChild(container);
+  return container;
 }
 
 export function mostrarNotificacao(mensagem, tipo = 'success') {
-    const container = document.getElementById('toast-container') || criarContainerToast();
-    const toast = document.createElement('div');
-    toast.className = `toast-notificacao ${tipo}`;
-    toast.textContent = mensagem;
+  const container =
+    document.getElementById('toast-container') || criarContainerToast();
+  const toast = document.createElement('div');
+  toast.className = `toast-notificacao ${tipo}`;
+  toast.textContent = mensagem;
 
-    container.appendChild(toast);
+  container.appendChild(toast);
 
-    setTimeout(() => {
-        toast.classList.add('sair');
-        setTimeout(() => toast.remove(), 300);
-    }, 2000);
+  setTimeout(() => {
+    toast.classList.add('sair');
+    setTimeout(() => toast.remove(), 300);
+  }, 2000);
 }
 
 export function gerarCardHTML(produto) {
-    const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-    const imagemRandom = `https://picsum.photos/300/250?random=${Math.floor(Math.random() * 1000)}`;
-    const descricao = produto.descricao || `Descrição detalhada do produto ${produto.nome}. Produto de alta qualidade com excelente custo-benefício.`;
-    const totalInicial = fmt.format(produto.valor * 1); // Calcula total inicial com quantidade 1
-    
-    return `
+  const fmt = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+  const imagemRandom = `https://picsum.photos/300/250?random=${Math.floor(Math.random() * 1000)}`;
+  const descricao =
+    produto.descricao ||
+    `Descrição detalhada do produto ${produto.nome}. Produto de alta qualidade com excelente custo-benefício.`;
+  const totalInicial = fmt.format(produto.valor * 1); // Calcula total inicial com quantidade 1
+
+  return `
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <img src="${imagemRandom}" class="card-img-top" alt="${produto.nome}">
@@ -59,22 +65,29 @@ export function gerarCardHTML(produto) {
 }
 
 export function atualizarTotalCard(inputElement) {
-    const card = inputElement.closest('.card');
-    if (!card) return;
+  const card = inputElement.closest('.card');
+  if (!card) return;
 
-    const precoElement = card.querySelector('.card-text');
-    if (!precoElement) return;
+  const precoElement = card.querySelector('.card-text');
+  if (!precoElement) return;
 
-    const precoText = precoElement.textContent.trim();
-    let preco = precoText.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
-    preco = parseFloat(preco);
+  const precoText = precoElement.textContent.trim();
+  let preco = precoText
+    .replace('R$', '')
+    .replace(/\./g, '')
+    .replace(',', '.')
+    .trim();
+  preco = parseFloat(preco);
 
-    const quantidade = parseInt(inputElement.value, 10) || 0;
-    const total = preco * quantidade;
+  const quantidade = parseInt(inputElement.value, 10) || 0;
+  const total = preco * quantidade;
 
-    const totalSpan = card.querySelector('.total-produto');
-    if (totalSpan) {
-        const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-        totalSpan.textContent = fmt.format(total);
-    }
+  const totalSpan = card.querySelector('.total-produto');
+  if (totalSpan) {
+    const fmt = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+    totalSpan.textContent = fmt.format(total);
+  }
 }

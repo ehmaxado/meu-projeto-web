@@ -3,26 +3,123 @@ import { mostrarNotificacao, gerarCardHTML, atualizarTotalCard } from './ui.js';
 
 // dados de produtos
 const produtos = [
-    { nome: 'Apple iPhone 15 (128GB)', valor: 4999.00, imagem: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-hero-select-202309?wid=470&hei=556&fmt=png-alpha' },
-    { nome: 'Sony PlayStation 5 (Console)', valor: 3899.00, imagem: 'https://upload.wikimedia.org/wikipedia/commons/1/10/PS5_console_and_DualSense_controller.png' },
-    { nome: 'Microsoft Xbox Series X', valor: 3499.00, imagem: 'https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox_Series_X.png' },
-    { nome: 'Nintendo Switch OLED', valor: 2399.00, imagem: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Nintendo_Switch_OLED_model.png' },
-    { nome: 'Apple Watch Series 9', valor: 3999.00, imagem: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/watch-s9-hero-202309' },
-    { nome: 'Samsung Galaxy A55 5G', valor: 2499.00, imagem: 'https://images.samsung.com/is/image/samsung/br-galaxy-a55-5g-a556-sm-a556elbgzto-534951766?$650_519_PNG$' },
-    { nome: 'Amazon Kindle 11ª Geração', valor: 499.00, imagem: 'https://m.media-amazon.com/images/I/61EXU8BuGZL._AC_SL1000_.jpg' },
-    { nome: 'GoPro HERO12 Black', valor: 2999.00, imagem: 'https://gopro.com/content/dam/help/hero12-black/hero12-black.png' },
-    { nome: 'Câmera Canon EOS Rebel T7', valor: 3299.00, imagem: 'https://m.media-amazon.com/images/I/71EWRyqzw0L._AC_SL1500_.jpg' },
-    { nome: 'Monitor LG 27" Full HD', valor: 1199.00, imagem: 'https://www.lg.com/br/images/monitores/md07508427/gallery/large01.jpg' },
-    { nome: 'Teclado Mecânico Logitech G413', valor: 599.00, imagem: 'https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_auto/content/dam/gaming/en/products/g413/gallery/g413-gallery-1.png' },
-    { nome: 'Mouse Logitech G502 Hero', valor: 349.00, imagem: 'https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_auto/content/dam/gaming/en/products/g502-hero/gallery/g502-hero-gallery-1.png' },
-    { nome: 'Caixa de Som JBL Flip 6', valor: 699.00, imagem: 'https://jblstore.com.br/media/catalog/product/f/l/flip6_preto_1.jpg' },
-    { nome: 'Fone JBL Tune 510BT', valor: 249.00, imagem: 'https://jblstore.com.br/media/catalog/product/t/u/tune510bt_preto_1.jpg' },
-    { nome: 'SSD Kingston NV2 1TB', valor: 399.00, imagem: 'https://media.kingston.com/kingston/product/ktc-product-ssd-nv2-pcie-4-nvme-m2-2280-1tb-2-zm-lg.jpg' },
-    { nome: 'Placa de Vídeo NVIDIA GeForce RTX 4060', valor: 2199.00, imagem: 'https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-4060/gallery/rtx-4060-gallery-1.jpg' },
-    { nome: 'Samsung Smart TV 55" 4K', valor: 2899.00, imagem: 'https://images.samsung.com/is/image/samsung/br-uhd-4k-tv-au7700-un55au7700gxzd-frontblack-368893188' },
-    { nome: 'Apple AirPods Pro (2ª geração)', valor: 2499.00, imagem: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQD83' },
-    { nome: 'Tablet Samsung Galaxy Tab S9', valor: 4599.00, imagem: 'https://images.samsung.com/is/image/samsung/br-galaxy-tab-s9-highlights-kv-530245183?$650_519_PNG$' },
-    { nome: 'Samsung Galaxy S24 (mockup)', valor: 4299.00, imagem: 'https://images.samsung.com/is/image/samsung/assets/levant/galaxy-s24/gallery/levant-galaxy-s24-purple-01.png' }
+  {
+    nome: 'Apple iPhone 15 (128GB)',
+    valor: 4999.0,
+    imagem:
+      'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-hero-select-202309?wid=470&hei=556&fmt=png-alpha',
+  },
+  {
+    nome: 'Sony PlayStation 5 (Console)',
+    valor: 3899.0,
+    imagem:
+      'https://upload.wikimedia.org/wikipedia/commons/1/10/PS5_console_and_DualSense_controller.png',
+  },
+  {
+    nome: 'Microsoft Xbox Series X',
+    valor: 3499.0,
+    imagem:
+      'https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox_Series_X.png',
+  },
+  {
+    nome: 'Nintendo Switch OLED',
+    valor: 2399.0,
+    imagem:
+      'https://upload.wikimedia.org/wikipedia/commons/8/83/Nintendo_Switch_OLED_model.png',
+  },
+  {
+    nome: 'Apple Watch Series 9',
+    valor: 3999.0,
+    imagem:
+      'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/watch-s9-hero-202309',
+  },
+  {
+    nome: 'Samsung Galaxy A55 5G',
+    valor: 2499.0,
+    imagem:
+      'https://images.samsung.com/is/image/samsung/br-galaxy-a55-5g-a556-sm-a556elbgzto-534951766?$650_519_PNG$',
+  },
+  {
+    nome: 'Amazon Kindle 11ª Geração',
+    valor: 499.0,
+    imagem: 'https://m.media-amazon.com/images/I/61EXU8BuGZL._AC_SL1000_.jpg',
+  },
+  {
+    nome: 'GoPro HERO12 Black',
+    valor: 2999.0,
+    imagem: 'https://gopro.com/content/dam/help/hero12-black/hero12-black.png',
+  },
+  {
+    nome: 'Câmera Canon EOS Rebel T7',
+    valor: 3299.0,
+    imagem: 'https://m.media-amazon.com/images/I/71EWRyqzw0L._AC_SL1500_.jpg',
+  },
+  {
+    nome: 'Monitor LG 27" Full HD',
+    valor: 1199.0,
+    imagem:
+      'https://www.lg.com/br/images/monitores/md07508427/gallery/large01.jpg',
+  },
+  {
+    nome: 'Teclado Mecânico Logitech G413',
+    valor: 599.0,
+    imagem:
+      'https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_auto/content/dam/gaming/en/products/g413/gallery/g413-gallery-1.png',
+  },
+  {
+    nome: 'Mouse Logitech G502 Hero',
+    valor: 349.0,
+    imagem:
+      'https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_auto/content/dam/gaming/en/products/g502-hero/gallery/g502-hero-gallery-1.png',
+  },
+  {
+    nome: 'Caixa de Som JBL Flip 6',
+    valor: 699.0,
+    imagem:
+      'https://jblstore.com.br/media/catalog/product/f/l/flip6_preto_1.jpg',
+  },
+  {
+    nome: 'Fone JBL Tune 510BT',
+    valor: 249.0,
+    imagem:
+      'https://jblstore.com.br/media/catalog/product/t/u/tune510bt_preto_1.jpg',
+  },
+  {
+    nome: 'SSD Kingston NV2 1TB',
+    valor: 399.0,
+    imagem:
+      'https://media.kingston.com/kingston/product/ktc-product-ssd-nv2-pcie-4-nvme-m2-2280-1tb-2-zm-lg.jpg',
+  },
+  {
+    nome: 'Placa de Vídeo NVIDIA GeForce RTX 4060',
+    valor: 2199.0,
+    imagem:
+      'https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-4060/gallery/rtx-4060-gallery-1.jpg',
+  },
+  {
+    nome: 'Samsung Smart TV 55" 4K',
+    valor: 2899.0,
+    imagem:
+      'https://images.samsung.com/is/image/samsung/br-uhd-4k-tv-au7700-un55au7700gxzd-frontblack-368893188',
+  },
+  {
+    nome: 'Apple AirPods Pro (2ª geração)',
+    valor: 2499.0,
+    imagem:
+      'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQD83',
+  },
+  {
+    nome: 'Tablet Samsung Galaxy Tab S9',
+    valor: 4599.0,
+    imagem:
+      'https://images.samsung.com/is/image/samsung/br-galaxy-tab-s9-highlights-kv-530245183?$650_519_PNG$',
+  },
+  {
+    nome: 'Samsung Galaxy S24 (mockup)',
+    valor: 4299.0,
+    imagem:
+      'https://images.samsung.com/is/image/samsung/assets/levant/galaxy-s24/gallery/levant-galaxy-s24-purple-01.png',
+  },
 ];
 
 // estado do carrinho
@@ -30,105 +127,113 @@ let carrinho = [];
 
 // gerenciamento do carrinho
 function carregarCarrinho() {
-    const carrinhoSalvo = localStorage.getItem('carrinho');
-    carrinho = carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
-    atualizarCarrinho();
+  const carrinhoSalvo = localStorage.getItem('carrinho');
+  carrinho = carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
+  atualizarCarrinho();
 }
 
 function salvarCarrinho() {
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    atualizarCarrinho();
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  atualizarCarrinho();
 }
 
 function adicionarAoCarrinho(card) {
-    const nome = card.querySelector('.card-title').textContent;
-    const precoText = card.querySelector('.card-text').textContent;
-    let preco = precoText.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
-    preco = parseFloat(preco);
-    const quantidade = parseInt(card.querySelector('.qtd-produto').value, 10);
+  const nome = card.querySelector('.card-title').textContent;
+  const precoText = card.querySelector('.card-text').textContent;
+  let preco = precoText
+    .replace('R$', '')
+    .replace(/\./g, '')
+    .replace(',', '.')
+    .trim();
+  preco = parseFloat(preco);
+  const quantidade = parseInt(card.querySelector('.qtd-produto').value, 10);
 
-    if (quantidade <= 0) {
-        mostrarNotificacao('Selecione uma quantidade maior que 0.');
-        return;
-    }
+  if (quantidade <= 0) {
+    mostrarNotificacao('Selecione uma quantidade maior que 0.');
+    return;
+  }
 
-    const itemExistente = carrinho.find(item => item.nome === nome);
-    if (itemExistente) {
-        itemExistente.quantidade += quantidade;
-    } else {
-        carrinho.push({ nome, preco, quantidade });
-    }
+  const itemExistente = carrinho.find((item) => item.nome === nome);
+  if (itemExistente) {
+    itemExistente.quantidade += quantidade;
+  } else {
+    carrinho.push({ nome, preco, quantidade });
+  }
 
-    salvarCarrinho();
-    mostrarNotificacao(`✓ Adicionado ao carrinho: ${quantidade}x ${nome}`);
-    card.querySelector('.qtd-produto').value = '0';
+  salvarCarrinho();
+  mostrarNotificacao(`✓ Adicionado ao carrinho: ${quantidade}x ${nome}`);
+  card.querySelector('.qtd-produto').value = '0';
 }
 
 function alterarQuantidade(index, valor) {
-    carrinho[index].quantidade += valor;
-    if (carrinho[index].quantidade <= 0) {
-        removerDoCarrinho(index);
-    } else {
-        salvarCarrinho();
-    }
+  carrinho[index].quantidade += valor;
+  if (carrinho[index].quantidade <= 0) {
+    removerDoCarrinho(index);
+  } else {
+    salvarCarrinho();
+  }
 }
 
 function removerDoCarrinho(index) {
-    const item = carrinho[index];
-    if (confirm(`Deseja remover "${item.nome}" do carrinho?`)) {
-        carrinho.splice(index, 1);
-        salvarCarrinho();
-    }
+  const item = carrinho[index];
+  if (confirm(`Deseja remover "${item.nome}" do carrinho?`)) {
+    carrinho.splice(index, 1);
+    salvarCarrinho();
+  }
 }
 
 function limparCarrinho() {
-    if (confirm('Tem certeza que deseja limpar o carrinho?')) {
-        carrinho = [];
-        salvarCarrinho();
-    }
+  if (confirm('Tem certeza que deseja limpar o carrinho?')) {
+    carrinho = [];
+    salvarCarrinho();
+  }
 }
 
 function finalizarCompra() {
-    if (carrinho.length === 0) {
-        mostrarNotificacao('Carrinho vazio!');
-        return;
-    }
-    mostrarNotificacao('✓ Compra realizada com sucesso!');
-    carrinho = [];
-    salvarCarrinho();
+  if (carrinho.length === 0) {
+    mostrarNotificacao('Carrinho vazio!');
+    return;
+  }
+  mostrarNotificacao('✓ Compra realizada com sucesso!');
+  carrinho = [];
+  salvarCarrinho();
 }
 
 // interface do carrinho
 function atualizarCarrinho() {
-    const botaoCarrinho = document.getElementById('botao-carrinho');
-    
-    if (carrinho.length === 0) {
-        botaoCarrinho.innerHTML = '🛒';
-    } else {
-        botaoCarrinho.innerHTML = `🛒<span class="cart-badge">${carrinho.length}</span>`;
-    }
-    
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalCarrinho = document.getElementById('total-carrinho');
-    
-    if (!listaCarrinho) return;
-    
-    listaCarrinho.innerHTML = '';
-    let total = 0;
-    
-    if (carrinho.length === 0) {
-        listaCarrinho.innerHTML = '<p class="text-center text-muted">Carrinho vazio</p>';
-        totalCarrinho.textContent = 'R$ 0,00';
-    } else {
-        const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-        
-        carrinho.forEach((item, index) => {
-            const subtotal = item.preco * item.quantidade;
-            total += subtotal;
-            
-            const linha = document.createElement('div');
-            linha.className = 'card mb-3';
-            linha.innerHTML = `
+  const botaoCarrinho = document.getElementById('botao-carrinho');
+
+  if (carrinho.length === 0) {
+    botaoCarrinho.innerHTML = '🛒';
+  } else {
+    botaoCarrinho.innerHTML = `🛒<span class="cart-badge">${carrinho.length}</span>`;
+  }
+
+  const listaCarrinho = document.getElementById('lista-carrinho');
+  const totalCarrinho = document.getElementById('total-carrinho');
+
+  if (!listaCarrinho) return;
+
+  listaCarrinho.innerHTML = '';
+  let total = 0;
+
+  if (carrinho.length === 0) {
+    listaCarrinho.innerHTML =
+      '<p class="text-center text-muted">Carrinho vazio</p>';
+    totalCarrinho.textContent = 'R$ 0,00';
+  } else {
+    const fmt = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+
+    carrinho.forEach((item, index) => {
+      const subtotal = item.preco * item.quantidade;
+      total += subtotal;
+
+      const linha = document.createElement('div');
+      linha.className = 'card mb-3';
+      linha.innerHTML = `
                 <div class="card-body p-3">
                     <div class="d-flex justify-content-between align-items-start mb-2">
                         <h6 class="card-title mb-0">${item.nome}</h6>
@@ -150,16 +255,16 @@ function atualizarCarrinho() {
                     </p>
                 </div>
             `;
-            listaCarrinho.appendChild(linha);
-        });
-        
-        totalCarrinho.textContent = fmt.format(total);
-    }
+      listaCarrinho.appendChild(linha);
+    });
+
+    totalCarrinho.textContent = fmt.format(total);
+  }
 }
 
 function toggleCarrinho() {
-    const popup = document.getElementById('popup-carrinho');
-    popup.classList.toggle('ativo');
+  const popup = document.getElementById('popup-carrinho');
+  popup.classList.toggle('ativo');
 }
 
 // Expose functions used by inline onclick handlers in HTML.
@@ -172,14 +277,14 @@ window.alterarQuantidade = alterarQuantidade;
 // depoimentos
 
 async function carregarDepoimentos() {
-    try {
-        const numero = Math.floor(Math.random() * 20) + 1;
-        const dados = await getDepoimentos(numero);
-        const container = document.getElementById('lista-depoimentos');
-        if (!container) return;
-        container.innerHTML = '';
-        dados.forEach(item => {
-            const card = `
+  try {
+    const numero = Math.floor(Math.random() * 20) + 1;
+    const dados = await getDepoimentos(numero);
+    const container = document.getElementById('lista-depoimentos');
+    if (!container) return;
+    container.innerHTML = '';
+    dados.forEach((item) => {
+      const card = `
                 <div class="col-md-4 mb-3">
                     <div class="card h-100">
                         <div class="card-body">
@@ -191,194 +296,213 @@ async function carregarDepoimentos() {
                     </div>
                 </div>
             `;
-            container.innerHTML += card;
-        });
-    } catch (err) {
-        console.error('Não foi possível carregar depoimentos', err);
-    }
+      container.innerHTML += card;
+    });
+  } catch (err) {
+    console.error('Não foi possível carregar depoimentos', err);
+  }
 }
 
 // produtos e cards
 function popularProdutos(num) {
-    const container = document.getElementById('produtos-container');
-    container.innerHTML = '';
-    let produtosParaMostrar = [];
-    
-    if (num === 'all') {
-        produtosParaMostrar = produtos;
-    } else {
-        for (let i = 0; i < num; i++) {
-            produtosParaMostrar.push(gerarNomeValorRandomico());
-        }
+  const container = document.getElementById('produtos-container');
+  container.innerHTML = '';
+  let produtosParaMostrar = [];
+
+  if (num === 'all') {
+    produtosParaMostrar = produtos;
+  } else {
+    for (let i = 0; i < num; i++) {
+      produtosParaMostrar.push(gerarNomeValorRandomico());
     }
-    
-    produtosParaMostrar.forEach(prod => {
-        container.innerHTML += gerarCardHTML(prod);
+  }
+
+  produtosParaMostrar.forEach((prod) => {
+    container.innerHTML += gerarCardHTML(prod);
+  });
+
+  const quantidades = container.querySelectorAll('.qtd-produto');
+  quantidades.forEach((q) => {
+    q.addEventListener('input', function () {
+      atualizarTotalCard(this);
     });
-    
-    const quantidades = container.querySelectorAll('.qtd-produto');
-    quantidades.forEach(q => {
-        q.addEventListener('input', function() {
-            atualizarTotalCard(this);
-        });
-        q.addEventListener('change', function() {
-            atualizarTotalCard(this);
-        });
-        q.addEventListener('keyup', function() {
-            atualizarTotalCard(this);
-        });
+    q.addEventListener('change', function () {
+      atualizarTotalCard(this);
     });
-    
-    const botoes = container.querySelectorAll('.adicionar-carrinho');
-    botoes.forEach(btn => btn.addEventListener('click', (e) => {
-        const card = e.target.closest('.card');
-        adicionarAoCarrinho(card);
-    }));
+    q.addEventListener('keyup', function () {
+      atualizarTotalCard(this);
+    });
+  });
+
+  const botoes = container.querySelectorAll('.adicionar-carrinho');
+  botoes.forEach((btn) =>
+    btn.addEventListener('click', (e) => {
+      const card = e.target.closest('.card');
+      adicionarAoCarrinho(card);
+    })
+  );
 }
 
 function gerarNomeValorRandomico() {
-    const indice = Math.floor(Math.random() * produtos.length);
-    return produtos[indice];
+  const indice = Math.floor(Math.random() * produtos.length);
+  return produtos[indice];
 }
 
 // inicialização
 
 document.addEventListener('DOMContentLoaded', () => {
-    carregarCarrinho();
-    const popup = document.getElementById('popup-carrinho');
-    if (popup) {
-        popup.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-    }
-    document.addEventListener('click', (e) => {
-        const popup = document.getElementById('popup-carrinho');
-        const botao = document.getElementById('botao-carrinho');
-        if (popup && botao && !popup.contains(e.target) && !botao.contains(e.target)) {
-            popup.classList.remove('ativo');
-        }
+  carregarCarrinho();
+  const popup = document.getElementById('popup-carrinho');
+  if (popup) {
+    popup.addEventListener('click', (e) => {
+      e.stopPropagation();
     });
-    
-    // Configurar modal de detalhes do produto
-    const modalDetalhes = document.getElementById('modalDetalhesProduto');
-    if (modalDetalhes) {
-        modalDetalhes.addEventListener('show.bs.modal', function (event) {
-            // Botão que acionou o modal
-            const botao = event.relatedTarget;
-            
-            // Extrair dados dos atributos data-*
-            const nome = botao.getAttribute('data-nome');
-            const preco = parseFloat(botao.getAttribute('data-preco'));
-            const descricao = botao.getAttribute('data-descricao');
-            const imagem = botao.getAttribute('data-imagem');
-            
-            // Elementos do modal
-            const modalTitulo = modalDetalhes.querySelector('#modalDetalhesProdutoLabel');
-            const modalDescricao = modalDetalhes.querySelector('#modal-produto-descricao');
-            const modalPreco = modalDetalhes.querySelector('#modal-produto-preco');
-            const modalImagem = modalDetalhes.querySelector('#modal-produto-imagem');
-            const modalQuantidade = modalDetalhes.querySelector('#modal-produto-quantidade');
-            const btnAdicionar = modalDetalhes.querySelector('#modal-adicionar-carrinho');
-            
-            // Formatar preço
-            const fmt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-            
-            // Injetar conteúdo no modal
-            modalTitulo.textContent = nome;
-            modalDescricao.textContent = descricao;
-            modalPreco.textContent = fmt.format(preco);
-            modalImagem.src = imagem;
-            modalImagem.alt = nome;
-            modalQuantidade.value = 1;
-            
-            // Configurar botão de adicionar ao carrinho no modal
-            btnAdicionar.onclick = function() {
-                const quantidade = parseInt(modalQuantidade.value, 10);
-                
-                if (quantidade <= 0) {
-                    mostrarNotificacao('Selecione uma quantidade maior que 0.');
-                    return;
-                }
-                
-                const itemExistente = carrinho.find(item => item.nome === nome);
-                if (itemExistente) {
-                    itemExistente.quantidade += quantidade;
-                } else {
-                    carrinho.push({ nome, preco, quantidade });
-                }
-                
-                salvarCarrinho();
-                mostrarNotificacao(`✓ Adicionado ao carrinho: ${quantidade}x ${nome}`);
-                
-                // Fechar o modal
-                const modal = bootstrap.Modal.getInstance(modalDetalhes);
-                modal.hide();
-            };
-        });
+  }
+  document.addEventListener('click', (e) => {
+    const popup = document.getElementById('popup-carrinho');
+    const botao = document.getElementById('botao-carrinho');
+    if (
+      popup &&
+      botao &&
+      !popup.contains(e.target) &&
+      !botao.contains(e.target)
+    ) {
+      popup.classList.remove('ativo');
     }
-    const select = document.getElementById('num-produtos');
-    if (select) {
-        popularProdutos(3);
-        select.addEventListener('change', () => {
-            const value = select.value === 'all' ? 'all' : parseInt(select.value);
-            popularProdutos(value);
-        });
-    }
+  });
 
-    carregarDepoimentos();
-    configurarFormularioContato();
+  // Configurar modal de detalhes do produto
+  const modalDetalhes = document.getElementById('modalDetalhesProduto');
+  if (modalDetalhes) {
+    modalDetalhes.addEventListener('show.bs.modal', function (event) {
+      // Botão que acionou o modal
+      const botao = event.relatedTarget;
+
+      // Extrair dados dos atributos data-*
+      const nome = botao.getAttribute('data-nome');
+      const preco = parseFloat(botao.getAttribute('data-preco'));
+      const descricao = botao.getAttribute('data-descricao');
+      const imagem = botao.getAttribute('data-imagem');
+
+      // Elementos do modal
+      const modalTitulo = modalDetalhes.querySelector(
+        '#modalDetalhesProdutoLabel'
+      );
+      const modalDescricao = modalDetalhes.querySelector(
+        '#modal-produto-descricao'
+      );
+      const modalPreco = modalDetalhes.querySelector('#modal-produto-preco');
+      const modalImagem = modalDetalhes.querySelector('#modal-produto-imagem');
+      const modalQuantidade = modalDetalhes.querySelector(
+        '#modal-produto-quantidade'
+      );
+      const btnAdicionar = modalDetalhes.querySelector(
+        '#modal-adicionar-carrinho'
+      );
+
+      // Formatar preço
+      const fmt = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      });
+
+      // Injetar conteúdo no modal
+      modalTitulo.textContent = nome;
+      modalDescricao.textContent = descricao;
+      modalPreco.textContent = fmt.format(preco);
+      modalImagem.src = imagem;
+      modalImagem.alt = nome;
+      modalQuantidade.value = 1;
+
+      // Configurar botão de adicionar ao carrinho no modal
+      btnAdicionar.onclick = function () {
+        const quantidade = parseInt(modalQuantidade.value, 10);
+
+        if (quantidade <= 0) {
+          mostrarNotificacao('Selecione uma quantidade maior que 0.');
+          return;
+        }
+
+        const itemExistente = carrinho.find((item) => item.nome === nome);
+        if (itemExistente) {
+          itemExistente.quantidade += quantidade;
+        } else {
+          carrinho.push({ nome, preco, quantidade });
+        }
+
+        salvarCarrinho();
+        mostrarNotificacao(`✓ Adicionado ao carrinho: ${quantidade}x ${nome}`);
+
+        // Fechar o modal
+        // Verificar para ajustar isso:
+        //const modal = bootstrap.Modal.getInstance(modalDetalhes);
+        //modal.hide();
+      };
+    });
+  }
+  const select = document.getElementById('num-produtos');
+  if (select) {
+    popularProdutos(3);
+    select.addEventListener('change', () => {
+      const value = select.value === 'all' ? 'all' : parseInt(select.value);
+      popularProdutos(value);
+    });
+  }
+
+  carregarDepoimentos();
+  configurarFormularioContato();
 });
 
 // CONTATO
 
 function configurarFormularioContato() {
-    const formContato = document.querySelector('form');
-    if (!formContato || !document.getElementById('nome')) return;
+  const formContato = document.querySelector('form');
+  if (!formContato || !document.getElementById('nome')) return;
 
-    formContato.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const dados = coletarDadosContato();
+  formContato.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const dados = coletarDadosContato();
 
-        if (!validarDadosContato(dados)) {
-            return;
-        }
+    if (!validarDadosContato(dados)) {
+      return;
+    }
 
-        console.log('Dados enviados:', dados);
+    console.log('Dados enviados:', dados);
 
-        try {
-            const res = await postContato(dados);
-            const retorno = await res.json();
-            console.log('Retorno da API:', retorno);
+    try {
+      const res = await postContato(dados);
+      const retorno = await res.json();
+      console.log('Retorno da API:', retorno);
 
-            if (res.ok && res.status === 201) {
-                mostrarNotificacao('Mensagem enviada com sucesso!', 'success');
-            } else {
-                mostrarNotificacao('Erro ao enviar a mensagem.', 'danger');
-            }
-        } catch (err) {
-            console.error('Falha no envio do contato', err);
-            mostrarNotificacao('Erro ao enviar a mensagem.', 'danger');
-        }
-    });
+      if (res.ok && res.status === 201) {
+        mostrarNotificacao('Mensagem enviada com sucesso!', 'success');
+      } else {
+        mostrarNotificacao('Erro ao enviar a mensagem.', 'danger');
+      }
+    } catch (err) {
+      console.error('Falha no envio do contato', err);
+      mostrarNotificacao('Erro ao enviar a mensagem.', 'danger');
+    }
+  });
 }
 
 function coletarDadosContato() {
-    return {
-        nome: document.getElementById('nome').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        mensagem: document.getElementById('mensagem').value.trim()
-    };
+  return {
+    nome: document.getElementById('nome').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    mensagem: document.getElementById('mensagem').value.trim(),
+  };
 }
 
 function validarDadosContato({ nome, email, mensagem }) {
-    if (!nome || !email || !mensagem) {
-        mostrarNotificacao('Preencha todos os campos.', 'danger');
-        return false;
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        mostrarNotificacao('Informe um e-mail válido.', 'danger');
-        return false;
-    }
-    return true;
+  if (!nome || !email || !mensagem) {
+    mostrarNotificacao('Preencha todos os campos.', 'danger');
+    return false;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    mostrarNotificacao('Informe um e-mail válido.', 'danger');
+    return false;
+  }
+  return true;
 }
