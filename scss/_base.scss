@@ -1,0 +1,123 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  padding-top: 88px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.65), transparent 38%),
+    var(--color-body-bg);
+  color: var(--font-color-base);
+  font-family: var(--font-family-base);
+  font-style: var(--font-style-base);
+  font-weight: var(--font-weight-base);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+  color: var(--font-color-base);
+  font-family: var(--font-family-heading);
+  font-style: var(--font-style-heading);
+  font-weight: var(--font-weight-heading);
+}
+
+p,
+label,
+.card-text,
+.form-control,
+.form-select,
+.nav-link,
+.btn,
+small {
+  color: var(--font-color-base);
+  font-style: var(--font-style-base);
+}
+
+.text-muted,
+.card-subtitle,
+.theme-switcher__label {
+  color: var(--font-color-muted) !important;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-section {
+  margin-top: 2rem;
+}
+
+.card,
+.modal-content,
+.popup-carrinho {
+  border: 1px solid var(--color-border);
+  border-radius: 1.2rem;
+  box-shadow: 0 18px 40px var(--color-shadow);
+}
+
+.card,
+.modal-content,
+.popup-carrinho,
+.form-control,
+.form-select,
+.input-group-text {
+  background-color: var(--color-surface);
+}
+
+.form-control,
+.form-select {
+  border: 1px solid var(--color-border);
+  color: var(--font-color-base);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.18);
+}
+
+.btn-primary,
+.btn-success {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-success:hover,
+.btn-success:focus {
+  background-color: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+  color: var(--color-accent-contrast);
+}
+
+.btn-outline-dark,
+.btn-outline-info,
+.btn-outline-secondary {
+  border-color: var(--color-border);
+  color: var(--font-color-base);
+}
+
+.btn-outline-dark:hover,
+.btn-outline-info:hover,
+.btn-outline-secondary:hover {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-accent);
+  color: var(--font-color-base);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger);
+}

@@ -1,0 +1,65 @@
+$font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family-heading: 'Trebuchet MS', 'Segoe UI', sans-serif;
+
+$typography: (
+  font-style-base: normal,
+  font-style-heading: normal,
+  font-weight-base: 400,
+  font-weight-heading: 700,
+  font-color-base: #14213d,
+  font-color-muted: #52607a
+);
+
+$theme-default: (
+  body-bg: #f4f7fb,
+  surface: #ffffff,
+  surface-alt: #e8eef7,
+  text: #14213d,
+  text-soft: #52607a,
+  navbar-bg: linear-gradient(135deg, #7bdff2, #8ec5ff),
+  navbar-text: #14213d,
+  accent: #2563eb,
+  accent-strong: #1d4ed8,
+  accent-contrast: #ffffff,
+  border: rgba(20, 33, 61, 0.12),
+  shadow: rgba(37, 99, 235, 0.16),
+  success: #168a53,
+  danger: #c0392b,
+  badge-bg: #ef4444
+);
+
+$theme-sunset: (
+  body-bg: #fff4ed,
+  surface: #fffaf7,
+  surface-alt: #ffe7d6,
+  text: #4b1d18,
+  text-soft: #7a514d,
+  navbar-bg: linear-gradient(135deg, #ffb347, #ff7b72),
+  navbar-text: #4b1d18,
+  accent: #e76f51,
+  accent-strong: #d65a3f,
+  accent-contrast: #ffffff,
+  border: rgba(75, 29, 24, 0.14),
+  shadow: rgba(231, 111, 81, 0.2),
+  success: #2d8f57,
+  danger: #c44536,
+  badge-bg: #b91c1c
+);
+
+$theme-forest: (
+  body-bg: #eef6f0,
+  surface: #fdfefd,
+  surface-alt: #dceee1,
+  text: #173127,
+  text-soft: #4f6b5f,
+  navbar-bg: linear-gradient(135deg, #8ecf9f, #5fb49c),
+  navbar-text: #173127,
+  accent: #2f855a,
+  accent-strong: #276749,
+  accent-contrast: #ffffff,
+  border: rgba(23, 49, 39, 0.12),
+  shadow: rgba(47, 133, 90, 0.18),
+  success: #1f7a4d,
+  danger: #a63d40,
+  badge-bg: #dc2626
+);

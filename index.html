@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand text-dark fw-normal" href="#">MeuProjeto</a>
-            
-            <button class="navbar-toggler border-dark" type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#navbarNav" 
-                    aria-controls="navbarNav" 
-                    aria-expanded="false" 
+
+            <button class="navbar-toggler border-dark" type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,8 +33,18 @@
                     </li>
                 </ul>
             </div>
-            
-            <button id="botao-carrinho" class="btn btn-outline-dark position-relative" onclick="toggleCarrinho()" style="font-size: 1.5rem;">🛒</button>
+
+            <div class="navbar-actions">
+                <div class="theme-switcher">
+                    <label class="theme-switcher__label" for="theme-select-home">Tema</label>
+                    <select id="theme-select-home" class="form-select form-select-sm" data-theme-select>
+                        <option value="default">Padrao</option>
+                        <option value="sunset">Sunset</option>
+                        <option value="forest">Forest</option>
+                    </select>
+                </div>
+                <button id="botao-carrinho" class="btn btn-outline-dark position-relative" onclick="toggleCarrinho()" style="font-size: 1rem;">Carrinho</button>
+            </div>
         </div>
     </nav>
 
@@ -54,19 +63,22 @@
             <div class="carrinho-botoes">
                 <button class="btn btn-danger" onclick="limparCarrinho()">Limpar Carrinho</button>
                 <button class="btn btn-success" onclick="finalizarCompra()">Comprar</button>
-                
             </div>
         </div>
     </div>
 
-
-    <div class="container mt-5">
-        <h1 class="mb-4">Bem-vindo ao MeuProjeto</h1>
+    <div class="container page-section">
+        <section class="hero-panel">
+            <h1 class="mb-3">Bem-vindo ao MeuProjeto</h1>
+            <p class="page-lead mb-0">Explore uma vitrine com produtos em destaque, acompanhe o carrinho em qualquer pagina e alterne entre temas para ver a interface reagir em tempo real.</p>
+        </section>
     </div>
-    <div class="container mt-5">
+
+    <div class="container page-section">
         <h2>O que nossos clientes dizem</h2>
         <div class="row" id="lista-depoimentos"></div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script type="module" src="js/main.js"></script>
 </body>

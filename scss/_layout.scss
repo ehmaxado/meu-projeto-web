@@ -1,0 +1,80 @@
+nav.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 0.85rem 0.9rem;
+  background: var(--color-navbar-bg);
+  box-shadow: 0 8px 24px var(--color-shadow);
+}
+
+.navbar-brand,
+.nav-link {
+  color: var(--color-navbar-text) !important;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-left: auto;
+}
+
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 220px;
+}
+
+.theme-switcher__label {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.theme-switcher .form-select {
+  min-width: 150px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.72);
+}
+
+#lista-depoimentos,
+#produtos-container {
+  margin-top: 1.5rem;
+}
+
+#produtos-container .card {
+  max-width: 25rem;
+  margin: 0 auto;
+}
+
+#produtos-container .card-img-top {
+  height: 220px;
+  object-fit: contain;
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+#produtos-container .card-body {
+  padding: 1.2rem;
+}
+
+.card-title,
+.modal-title {
+  margin-bottom: 0.85rem;
+}
+
+.hero-panel {
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.4)),
+    var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 42px var(--color-shadow);
+}
+
+.page-lead {
+  max-width: 42rem;
+  color: var(--font-color-muted);
+}

@@ -1,0 +1,124 @@
+.popup-carrinho {
+  position: fixed;
+  top: 78px;
+  right: -420px;
+  width: min(400px, calc(100vw - 1.5rem));
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  transition: right 0.3s ease;
+  background-color: var(--color-surface);
+}
+
+.popup-carrinho.ativo {
+  right: 0.75rem;
+}
+
+.popup-carrinho-conteudo {
+  padding: 1.25rem;
+}
+
+.popup-carrinho h4 {
+  margin-bottom: 0;
+  font-size: 1.15rem;
+}
+
+.lista-carrinho {
+  margin-bottom: 1rem;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.cart-item-subtotal {
+  color: var(--color-accent);
+  font-size: 1rem;
+  font-weight: var(--font-weight-heading);
+}
+
+.carrinho-total {
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background-color: var(--color-surface-alt);
+}
+
+.carrinho-botoes {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.carrinho-botoes button {
+  flex: 1;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-badge-bg);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+#botao-carrinho {
+  position: relative;
+  padding: 0.5rem 0.75rem;
+}
+
+.toast-container {
+  position: fixed;
+  top: 92px;
+  right: 20px;
+  z-index: 1100;
+}
+
+.toast-notificacao {
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  border-radius: 1rem;
+  color: #fff;
+  box-shadow: 0 14px 28px var(--color-shadow);
+  animation: slideIn 0.3s;
+}
+
+.toast-notificacao.success {
+  background: var(--color-success);
+}
+
+.toast-notificacao.danger {
+  background: var(--color-danger);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+.toast-notificacao.sair {
+  animation: slideOut 0.3s;
+}
