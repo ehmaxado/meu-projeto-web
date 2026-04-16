@@ -86,20 +86,30 @@ small {
   box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.18);
 }
 
-.btn-primary,
-.btn-success {
+.btn-primary {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
   color: var(--color-accent-contrast);
 }
 
 .btn-primary:hover,
-.btn-primary:focus,
-.btn-success:hover,
-.btn-success:focus {
+.btn-primary:focus {
   background-color: var(--color-accent-strong);
   border-color: var(--color-accent-strong);
   color: var(--color-accent-contrast);
+}
+
+.btn-success {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+  color: #fff;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background-color: color-mix(in srgb, var(--color-success) 88%, black);
+  border-color: color-mix(in srgb, var(--color-success) 88%, black);
+  color: #fff;
 }
 
 .btn-outline-dark,

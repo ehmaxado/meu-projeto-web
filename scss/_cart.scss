@@ -2,6 +2,7 @@
   position: fixed;
   top: 78px;
   right: -420px;
+  z-index: 1055;
   width: min(400px, calc(100vw - 1.5rem));
   max-height: calc(100vh - 100px);
   overflow-y: auto;
@@ -48,6 +49,17 @@
 
 .carrinho-botoes button {
   flex: 1;
+}
+
+.carrinho-botoes .btn-danger {
+  background-color: #e06a5f;
+  border-color: #e06a5f;
+}
+
+.carrinho-botoes .btn-danger:hover,
+.carrinho-botoes .btn-danger:focus {
+  background-color: #d85a4e;
+  border-color: #d85a4e;
 }
 
 .cart-badge {
