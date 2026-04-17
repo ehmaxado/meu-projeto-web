@@ -5,10 +5,14 @@
   --color-body-bg: #{map.get($theme-map, body-bg)};
   --color-surface: #{map.get($theme-map, surface)};
   --color-surface-alt: #{map.get($theme-map, surface-alt)};
+  --color-surface-soft: #{color-mix(in srgb, map.get($theme-map, surface) 82%, map.get($theme-map, surface-alt))};
   --color-text: #{map.get($theme-map, text)};
   --color-text-soft: #{map.get($theme-map, text-soft)};
+  --font-color-base: #{map.get($theme-map, text)};
+  --font-color-muted: #{map.get($theme-map, text-soft)};
   --color-navbar-bg: #{map.get($theme-map, navbar-bg)};
   --color-navbar-text: #{map.get($theme-map, navbar-text)};
+  --color-navbar-toggler-border: #{color-mix(in srgb, map.get($theme-map, navbar-text) 72%, transparent)};
   --color-accent: #{map.get($theme-map, accent)};
   --color-accent-strong: #{map.get($theme-map, accent-strong)};
   --color-accent-contrast: #{map.get($theme-map, accent-contrast)};
@@ -27,8 +31,6 @@
   --font-style-heading: #{map.get($typography, font-style-heading)};
   --font-weight-base: #{map.get($typography, font-weight-base)};
   --font-weight-heading: #{map.get($typography, font-weight-heading)};
-  --font-color-base: #{map.get($typography, font-color-base)};
-  --font-color-muted: #{map.get($typography, font-color-muted)};
 
   @include theme-properties($theme-default);
 }
@@ -39,4 +41,11 @@
 
 [data-theme='forest'] {
   @include theme-properties($theme-forest);
+}
+
+[data-theme='dark'] {
+  @include theme-properties($theme-dark);
+  --btn-close-filter: invert(1) grayscale(100%) brightness(200%);
+  --navbar-toggler-icon-filter: invert(1) grayscale(100%) brightness(220%);
+  --color-navbar-toggler-border: rgba(248, 251, 255, 0.75);
 }

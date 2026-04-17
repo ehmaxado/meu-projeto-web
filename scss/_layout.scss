@@ -8,9 +8,26 @@ nav.navbar {
   box-shadow: 0 8px 24px var(--color-shadow);
 }
 
+.navbar-collapse {
+  align-items: center;
+  gap: 1rem;
+}
+
 .navbar-brand,
 .nav-link {
   color: var(--color-navbar-text) !important;
+}
+
+.navbar-toggler {
+  border-color: var(--color-navbar-toggler-border) !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+
+.navbar-toggler-icon {
+  filter: var(--navbar-toggler-icon-filter, none);
 }
 
 .navbar-actions {
@@ -36,7 +53,7 @@ nav.navbar {
 .theme-switcher .form-select {
   min-width: 150px;
   border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.72);
+  background-color: color-mix(in srgb, var(--color-surface) 88%, transparent);
 }
 
 #lista-depoimentos,
@@ -44,19 +61,71 @@ nav.navbar {
   margin-top: 1.5rem;
 }
 
-#produtos-container .card {
-  max-width: 25rem;
-  margin: 0 auto;
+.card-produto,
+.card-depoimento {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
 }
 
-#produtos-container .card-img-top {
+.card-produto {
+  max-width: 25rem;
+  margin: 0 auto;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.card-produto:hover {
+  transform: translateY(-4px);
+}
+
+.card-produto__imagem {
   height: 220px;
   object-fit: contain;
   padding: 1.5rem 1.5rem 0.5rem;
 }
 
-#produtos-container .card-body {
+.card-produto__body {
   padding: 1.2rem;
+}
+
+.card-produto__titulo,
+.card-depoimento__titulo {
+  color: var(--font-color-base);
+}
+
+.card-produto__preco,
+.card-produto__total,
+.card-depoimento__texto {
+  color: var(--font-color-base);
+}
+
+.card-produto__total .total-produto {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-heading);
+}
+
+.card-depoimento {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-surface) 92%, white 8%),
+      var(--color-surface)
+    );
+}
+
+.card-depoimento__body {
+  padding: 1.25rem;
+}
+
+.card-depoimento__texto {
+  line-height: 1.6;
+}
+
+.card-depoimento__meta {
+  color: var(--font-color-muted) !important;
 }
 
 .card-title,
@@ -64,11 +133,41 @@ nav.navbar {
   margin-bottom: 0.85rem;
 }
 
+.page-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.page-controls .form-select {
+  min-width: 120px;
+  background-color: var(--color-surface);
+}
+
+.qtd-produto,
+#modal-produto-quantidade {
+  background-color: var(--color-surface);
+  color: var(--font-color-base);
+}
+
+#modal-produto-preco {
+  color: var(--color-accent);
+}
+
+#modal-produto-descricao {
+  color: var(--font-color-base);
+}
+
 .hero-panel {
   padding: 2rem;
   border-radius: 1.5rem;
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.4)),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-surface) 92%, white 8%),
+      color-mix(in srgb, var(--color-surface) 70%, transparent)
+    ),
     var(--color-surface-alt);
   border: 1px solid var(--color-border);
   box-shadow: 0 20px 42px var(--color-shadow);

@@ -1,6 +1,6 @@
 const THEME_STORAGE_KEY = 'site-theme';
 const DEFAULT_THEME = 'default';
-const AVAILABLE_THEMES = ['default', 'sunset', 'forest'];
+const AVAILABLE_THEMES = ['default', 'sunset', 'forest', 'dark'];
 
 function getStoredTheme() {
   const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);

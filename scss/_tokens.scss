@@ -63,3 +63,22 @@ $theme-forest: (
   danger: #a63d40,
   badge-bg: #dc2626
 );
+
+$theme-dark: (
+  body-bg: #09111f,
+  surface: #101a2b,
+  surface-alt: #172338,
+  text: #edf4ff,
+  text-soft: #9eb0ca,
+  navbar-bg: linear-gradient(135deg, #111b2d, #1b2f4d),
+  navbar-text: #f8fbff,
+  accent: #7cc8ff,
+  accent-strong: #55b3f6,
+  accent-contrast: #04111f,
+  border: rgba(158, 176, 202, 0.18),
+  shadow: rgba(1, 8, 20, 0.46),
+  success: #38c793,
+  danger: #ff7b72,
+  badge-bg: #ff6b6b,
+  card-text: black  
+);

@@ -3,10 +3,18 @@ html {
 }
 
 body {
+  --bs-body-bg: var(--color-body-bg);
+  --bs-body-color: var(--font-color-base);
+  --bs-border-color: var(--color-border);
+  --bs-secondary-bg: var(--color-surface-alt);
+  --bs-secondary-color: var(--font-color-base);
+  --bs-tertiary-bg: var(--color-surface-soft);
+  --bs-emphasis-color: var(--font-color-base);
+  --bs-light-rgb: 255, 255, 255;
   min-height: 100vh;
-  padding-top: 88px;
+  padding-top: 112px;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.65), transparent 38%),
+    radial-gradient(circle at top, color-mix(in srgb, var(--color-accent) 16%, transparent), transparent 38%),
     var(--color-body-bg);
   color: var(--font-color-base);
   font-family: var(--font-family-base);
@@ -70,20 +78,58 @@ small {
 .popup-carrinho,
 .form-control,
 .form-select,
+.input-group-text,
+.form-control,
+.form-select,
+.input-group-text,
+.modal-header,
+.modal-footer {
+  border: 1px solid var(--color-border);
+  color: var(--font-color-base);
+}
+
+.card,
+.modal-content,
+.popup-carrinho,
+.modal-header,
+.modal-body,
+.modal-footer,
+.form-control,
+.form-select,
 .input-group-text {
   background-color: var(--color-surface);
 }
 
+.modal-header,
+.modal-footer {
+  background-color: var(--color-surface-soft);
+}
+
+.modal-body {
+  color: var(--font-color-base);
+}
+
+.form-control::placeholder,
+textarea.form-control::placeholder {
+  color: var(--font-color-muted);
+}
+
 .form-control,
 .form-select {
-  border: 1px solid var(--color-border);
+  accent-color: var(--color-accent);
+}
+
+.form-select option {
+  background-color: var(--color-surface);
   color: var(--font-color-base);
 }
 
 .form-control:focus,
 .form-select:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.18);
+  background-color: var(--color-surface);
+  color: var(--font-color-base);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-accent) 28%, transparent);
 }
 
 .btn-primary {
@@ -112,6 +158,19 @@ small {
   color: #fff;
 }
 
+.btn-secondary {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-border);
+  color: var(--font-color-base);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: color-mix(in srgb, var(--color-surface-alt) 82%, var(--color-accent));
+  border-color: var(--color-accent);
+  color: var(--font-color-base);
+}
+
 .btn-outline-dark,
 .btn-outline-info,
 .btn-outline-secondary {
@@ -125,6 +184,10 @@ small {
   background-color: var(--color-surface-alt);
   border-color: var(--color-accent);
   color: var(--font-color-base);
+}
+
+.btn-close {
+  filter: var(--btn-close-filter, none);
 }
 
 .btn-danger {

@@ -1,4 +1,4 @@
-import '../scss/main.scss';
+import '../scss/style.scss';
 import { getDepoimentos, postContato } from './api.js';
 import { mostrarNotificacao, gerarCardHTML, atualizarTotalCard } from './ui.js';
 import { initTheme } from './theme.js';
@@ -287,13 +287,13 @@ async function carregarDepoimentos() {
     container.innerHTML = '';
     dados.forEach((item) => {
       const card = `
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">${item.name}</h5>
-                            <p class="card-text">${item.body}</p>
+                                <div class="col-md-4 mb-3">
+                    <div class="card card-depoimento h-100">
+                        <div class="card-body card-depoimento__body">
+                            <h5 class="card-title card-depoimento__titulo">${item.name}</h5>
+                            <p class="card-text card-depoimento__texto">${item.body}</p>
                             <br>
-                            <p class="card-subtitle text-muted">&nbsp;– ${item.email}</p>
+                            <p class="card-subtitle text-muted card-depoimento__meta">&nbsp;- ${item.email}</p>
                         </div>
                     </div>
                 </div>

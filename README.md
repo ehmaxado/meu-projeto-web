@@ -91,7 +91,7 @@ meu-projeto-web/
     |-- _responsive.scss
     |-- _themes.scss
     |-- _tokens.scss
-    `-- main.scss
+    `-- style.scss
 ```
 
 ## Organização dos arquivos
@@ -111,7 +111,7 @@ meu-projeto-web/
 
 ### Estilos
 
-- `scss/main.scss`: ponto de entrada dos estilos.
+- `scss/style.scss`: ponto de entrada dos estilos.
 - arquivos parciais em `scss/`: organização por base, layout, responsividade, carrinho, temas e tokens visuais.
 
 ## Dependências externas

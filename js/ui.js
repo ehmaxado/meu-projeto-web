@@ -36,16 +36,16 @@ export function gerarCardHTML(produto) {
 
   return `
         <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="${imagemRandom}" class="card-img-top" alt="${produto.nome}">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${produto.nome}</h5>
-                    <p class="card-text">${fmt.format(produto.valor)}</p>
+            <div class="card card-produto h-100">
+                <img src="${imagemRandom}" class="card-img-top card-produto__imagem" alt="${produto.nome}">
+                <div class="card-body card-produto__body d-flex flex-column">
+                    <h5 class="card-title card-produto__titulo">${produto.nome}</h5>
+                    <p class="card-text card-produto__preco">${fmt.format(produto.valor)}</p>
                     <div class="mb-2">
                         <label class="form-label">Quantidade:</label>
                         <input type="number" class="form-control qtd-produto" value="1" min="0">
                     </div>
-                    <p>Total: <span class="total-produto">${totalInicial}</span></p>
+                    <p class="card-produto__total">Total: <span class="total-produto">${totalInicial}</span></p>
                     <div class="d-grid gap-2">
                         <button class="btn btn-outline-info btn-ver-detalhes" 
                                 data-bs-toggle="modal" 
