@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
+    "check-types": "tsc --noEmit",
     "prepare": "husky",
     "dev": "vite",
     "build": "vite build"
@@ -31,6 +32,7 @@
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "sass": "^1.99.0",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.2",
     "vite": "^8.0.3"
   },

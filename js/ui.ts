@@ -1,38 +1,49 @@
-// funções de manipulação do DOM e exibição
+import type { Produto } from './types';
 
-export function criarContainerToast() {
+const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
+const parseCurrencyValue = (value: string): number =>
+  Number.parseFloat(
+    value.replace('R$', '').replace(/\./g, '').replace(',', '.').trim()
+  );
+
+export const criarContainerToast = (): HTMLDivElement => {
   const container = document.createElement('div');
   container.id = 'toast-container';
   container.className = 'toast-container';
   document.body.appendChild(container);
   return container;
-}
+};
 
-export function mostrarNotificacao(mensagem, tipo = 'success') {
+export const mostrarNotificacao = (
+  mensagem: string,
+  tipo = 'success'
+): void => {
   const container =
-    document.getElementById('toast-container') || criarContainerToast();
+    document.getElementById('toast-container') ?? criarContainerToast();
   const toast = document.createElement('div');
   toast.className = `toast-notificacao ${tipo}`;
   toast.textContent = mensagem;
 
   container.appendChild(toast);
 
-  setTimeout(() => {
+  window.setTimeout(() => {
     toast.classList.add('sair');
-    setTimeout(() => toast.remove(), 300);
+    window.setTimeout(() => toast.remove(), 300);
   }, 2000);
-}
+};
 
-export function gerarCardHTML(produto) {
-  const fmt = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
-  const imagemRandom = `https://picsum.photos/300/250?random=${Math.floor(Math.random() * 1000)}`;
+export const gerarCardHTML = (produto: Produto): string => {
+  const imagemRandom = `https://picsum.photos/300/250?random=${Math.floor(
+    Math.random() * 1000
+  )}`;
   const descricao =
-    produto.descricao ||
-    `Descrição detalhada do produto ${produto.nome}. Produto de alta qualidade com excelente custo-benefício.`;
-  const totalInicial = fmt.format(produto.valor * 1); // Calcula total inicial com quantidade 1
+    produto.descricao ??
+    `Descricao detalhada do produto ${produto.nome}. Produto de alta qualidade com excelente custo-beneficio.`;
+  const totalInicial = currencyFormatter.format(produto.valor);
 
   return `
         <div class="col-md-4 mb-4">
@@ -40,7 +51,7 @@ export function gerarCardHTML(produto) {
                 <img src="${imagemRandom}" class="card-img-top card-produto__imagem" alt="${produto.nome}">
                 <div class="card-body card-produto__body d-flex flex-column">
                     <h5 class="card-title card-produto__titulo">${produto.nome}</h5>
-                    <p class="card-text card-produto__preco">${fmt.format(produto.valor)}</p>
+                    <p class="card-text card-produto__preco">${currencyFormatter.format(produto.valor)}</p>
                     <div class="mb-2">
                         <label class="form-label">Quantidade:</label>
                         <input type="number" class="form-control qtd-produto" value="1" min="0">
@@ -62,32 +73,20 @@ export function gerarCardHTML(produto) {
             </div>
         </div>
     `;
-}
+};
 
-export function atualizarTotalCard(inputElement) {
-  const card = inputElement.closest('.card');
-  if (!card) return;
+export const atualizarTotalCard = (
+  inputElement: HTMLInputElement | null
+): void => {
+  const card = inputElement?.closest('.card');
+  const precoElement = card?.querySelector<HTMLElement>('.card-text');
+  const totalSpan = card?.querySelector<HTMLElement>('.total-produto');
 
-  const precoElement = card.querySelector('.card-text');
-  if (!precoElement) return;
-
-  const precoText = precoElement.textContent.trim();
-  let preco = precoText
-    .replace('R$', '')
-    .replace(/\./g, '')
-    .replace(',', '.')
-    .trim();
-  preco = parseFloat(preco);
-
-  const quantidade = parseInt(inputElement.value, 10) || 0;
-  const total = preco * quantidade;
-
-  const totalSpan = card.querySelector('.total-produto');
-  if (totalSpan) {
-    const fmt = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
-    totalSpan.textContent = fmt.format(total);
+  if (!inputElement || !precoElement || !totalSpan) {
+    return;
   }
-}
+
+  const preco = parseCurrencyValue(precoElement.textContent?.trim() ?? '');
+  const quantidade = Number.parseInt(inputElement.value, 10) || 0;
+  totalSpan.textContent = currencyFormatter.format(preco * quantidade);
+};
